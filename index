@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>₹314 Payment</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Inter, Arial, sans-serif;
+  background:radial-gradient(circle at top,#0d1224,#000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at 20% 20%,rgba(0,255,255,.12),transparent 40%),
+  radial-gradient(circle at 80% 70%,rgba(255,0,180,.10),transparent 40%);
+  animation:bgMove 8s linear infinite alternate;
+}
+
+@keyframes bgMove{
+  0%{transform:scale(1);}
+  100%{transform:scale(1.1);}
+}
+
+.main-card{
+  width:92%;
+  max-width:420px;
+  background:rgba(10,15,25,.72);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(0,255,255,.3);
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:
+  0 0 30px rgba(0,255,255,.15),
+  0 20px 60px rgba(0,0,0,.6);
+  position:relative;
+  z-index:2;
+}
+
+.screen{
+  padding:35px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:560px;
+}
+
+.hidden{
+  display:none;
+}
+
+.currency{
+  font-size:42px;
+  font-weight:700;
+  background:linear-gradient(135deg,#ffffff,#00ffff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+
+.price{
+  font-size:92px;
+  font-weight:900;
+  letter-spacing:-3px;
+  background:
+  linear-gradient(
+  135deg,
+  #ffffff,
+  #00ffff,
+  #ff4fd8,
+  #ffe066
+  );
+  background-size:300% 300%;
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  animation:gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  100%{background-position:100% 50%;}
+}
+
+.secure{
+  margin-top:14px;
+  font-size:12px;
+  letter-spacing:3px;
+  color:#8fbfff;
+  text-transform:uppercase;
+}
+
+.dots{
+  display:flex;
+  gap:12px;
+  margin-top:28px;
+}
+
+.dots span{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:cyan;
+  animation:bounce .8s infinite alternate;
+  box-shadow:0 0 12px cyan;
+}
+
+.dots span:nth-child(2){
+  animation-delay:.2s;
+  background:#ff4fd8;
+  box-shadow:0 0 12px #ff4fd8;
+}
+
+.dots span:nth-child(3){
+  animation-delay:.4s;
+  background:#ffe066;
+  box-shadow:0 0 12px #ffe066;
+}
+
+@keyframes bounce{
+  0%{
+    transform:translateY(0);
+    opacity:.5;
+  }
+  100%{
+    transform:translateY(-12px);
+    opacity:1;
+  }
+}
+
+.qr-title{
+  font-size:30px;
+  font-weight:700;
+  margin-bottom:22px;
+  background:
+  linear-gradient(
+  135deg,
+  #ffffff,
+  #00ffff,
+  #ff66cc
+  );
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+
+.qr-box{
+  position:relative;
+  padding:18px;
+  border-radius:30px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(0,255,255,.4);
+  box-shadow:0 0 20px rgba(0,255,255,.25);
+  overflow:hidden;
+}
+
+.qr-img{
+  width:240px;
+  height:240px;
+  object-fit:contain;
+  background:#ffffff;
+  border-radius:20px;
+  padding:8px;
+  display:block;
+}
+
+.scan{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:5px;
+  background:
+  linear-gradient(
+  90deg,
+  transparent,
+  cyan,
+  #ff4fd8,
+  transparent
+  );
+  box-shadow:0 0 16px cyan;
+  animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+  0%{top:0%;}
+  100%{top:100%;}
+}
+
+.upi-apps{
+  display:flex;
+  gap:14px;
+  margin-top:24px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.upi{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  padding:8px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.3s;
+}
+
+.upi:hover{
+  transform:scale(1.08);
+  border-color:cyan;
+  box-shadow:0 0 14px cyan;
+}
+
+.upi img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.note{
+  margin-top:18px;
+  font-size:12px;
+  color:#8fa7d1;
+}
+
+@media(max-width:500px){
+
+  .price{
+    font-size:72px;
+  }
+
+  .currency{
+    font-size:32px;
+  }
+
+  .qr-img{
+    width:200px;
+    height:200px;
+  }
+
+  .qr-title{
+    font-size:24px;
+  }
+
+  .screen{
+    min-height:520px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-card">
+
+<div id="priceScreen" class="screen">
+
+<div>
+<span class="currency">₹</span>
+<span id="price" class="price">0</span>
+</div>
+
+<div class="secure">SECURE PAYMENT</div>
+<div class="secure">FAST UPI CHECKOUT</div>
+<div class="secure">SCAN & PAY</div>
+
+<div class="dots">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+</div>
+
+<div id="qrScreen" class="screen hidden">
+
+<div class="qr-title">
+⚡ SCAN TO PAY ₹314 ⚡
+</div>
+
+<div class="qr-box">
+
+<img
+class="qr-img"
+src="https://i.ibb.co/Mkq4mSy2/314.png"
+alt="₹314 QR Code">
+
+<div class="scan"></div>
+
+</div>
+
+<div class="upi-apps">
+
+<div class="upi">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmj_UBW2y-w2nrz1NvmRlZYwbnhmf1b7JFwoX-DGSew&s=10">
+</div>
+
+<div class="upi">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCAj034qPy8W3UTADn9XTAHnWeILHDsoDsZq4qf5JApA&s=10">
+</div>
+
+<div class="upi">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuvlfobUPMmCBH9HPZ5rZ_dbYH0DzmVrlfARxDhKPMNQ&s=10">
+</div>
+
+<div class="upi">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShjYJT4-IFP0l7PuHDLXIBGIzDt4TSVx_1mekhGChDWA&s=10">
+</div>
+
+</div>
+
+<div class="note">
+🔐 Encrypted • Works with all UPI apps
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const priceElement =
+document.getElementById("price");
+
+const priceScreen =
+document.getElementById("priceScreen");
+
+const qrScreen =
+document.getElementById("qrScreen");
+
+const TARGET = 314;
+
+function animatePrice(){
+
+const duration = 2400;
+
+const start = performance.now();
+
+function update(now){
+
+const progress =
+Math.min((now - start) / duration, 1);
+
+const eased =
+1 - Math.pow(1 - progress, 3);
+
+priceElement.innerText =
+Math.floor(eased * TARGET);
+
+if(progress < 1){
+
+requestAnimationFrame(update);
+
+}else{
+
+priceElement.innerText = TARGET;
+
+setTimeout(showQR, 700);
+
+}
+
+}
+
+requestAnimationFrame(update);
+
+}
+
+function showQR(){
+
+priceScreen.classList.add("hidden");
+
+qrScreen.classList.remove("hidden");
+
+}
+
+animatePrice();
+
+</script>
+
+</body>
+</html>
